@@ -52,6 +52,7 @@ public class FadeOut : MonoBehaviour
                 {
                     GameManager.gameManager.gameOver = false;
                     GameManager.gameManager.life = 3;
+                    GameManager.gameManager.avoidNum = 0;
                     GvrCardboardHelpers.Recenter();
                 }
             }

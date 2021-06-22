@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class SpikeGenerator : MonoBehaviour
 {
-    public Vector3 pos1;
+    public List<GameObject> spawnPos;
 
-    public Quaternion rot1;
+    public List<GameObject> targetPos;
 
-    public GameObject spikePrefeb;
+    public List<GameObject> spikePrefeb;
+
     public float time = 3;
+
+    private int num = 0;
+    private int ball = 0;
+    private int position1 = 0;
+    private int position2 = 0;
 
     void Start()
     {
-        
+        spawnPos.Add(GameObject.Find("spikePos1"));
+        spawnPos.Add(GameObject.Find("spikePos2"));
+        spawnPos.Add(GameObject.Find("spikePos3"));
+
+        targetPos.Add(GameObject.Find("TargetPos1"));
+        targetPos.Add(GameObject.Find("TargetPos2"));
+        targetPos.Add(GameObject.Find("TargetPos3"));
     }
 
     void Update()
@@ -28,16 +40,45 @@ public class SpikeGenerator : MonoBehaviour
 
             if (time < 0)
             {
-                pos1 = GameObject.Find("spikePos1").transform.position;
-                pos1.y = 1.8f;
+                num = Random.Range(1, 3);
 
-                rot1 = GameObject.Find("spikePos1").transform.rotation;
+                if (num == 1)
+                {
+                    position1 = Random.Range(0, 3);
 
-                GameObject spike1 = Instantiate(spikePrefeb) as GameObject;
-                spike1.transform.position = pos1;
-                spike1.transform.rotation = rot1;
+                    ball = Random.Range(0, 2);
+                    GameObject spike1 = Instantiate(spikePrefeb[ball]) as GameObject;
+                    spike1.transform.position = new Vector3(spawnPos[position1].transform.position.x, 1.8f, spawnPos[position1].transform.position.z);
+                    spike1.transform.rotation = spawnPos[position1].transform.rotation;
+                    spike1.GetComponent<SpikeMoving>().target = targetPos[position1].transform.position;
+                    spike1.GetComponent<SpikeMoving>().type = spikePrefeb[ball].name;
 
-                time = Random.Range(2.5f, 5);
+                    time = Random.Range(2.5f - (0.05f * GameManager.gameManager.avoidNum), 5 - (0.05f * GameManager.gameManager.avoidNum));
+                }
+                else
+                {
+                    position1 = Random.Range(0, 3);
+                    position2 = Random.Range(0, 3);
+
+                    ball = Random.Range(0, 2);
+                    GameObject spike1 = Instantiate(spikePrefeb[ball]) as GameObject;
+                    spike1.transform.position = new Vector3(spawnPos[position1].transform.position.x, 1.8f, spawnPos[position1].transform.position.z);
+                    spike1.transform.rotation = spawnPos[position1].transform.rotation;
+                    spike1.GetComponent<SpikeMoving>().target = targetPos[position1].transform.position;
+                    spike1.GetComponent<SpikeMoving>().type = spikePrefeb[ball].name;
+
+                    if (position1 != position2)
+                    {
+                        ball = Random.Range(0, 2);
+                        GameObject spike2 = Instantiate(spikePrefeb[ball]) as GameObject;
+                        spike2.transform.position = new Vector3(spawnPos[position2].transform.position.x, 1.8f, spawnPos[position2].transform.position.z);
+                        spike2.transform.rotation = spawnPos[position2].transform.rotation;
+                        spike2.GetComponent<SpikeMoving>().target = targetPos[position2].transform.position;
+                        spike2.GetComponent<SpikeMoving>().type = spikePrefeb[ball].name;
+                    }
+
+                    time = Random.Range(2.5f - (0.05f * GameManager.gameManager.avoidNum), 5 - (0.05f * GameManager.gameManager.avoidNum));
+                }
             }
         }
     }

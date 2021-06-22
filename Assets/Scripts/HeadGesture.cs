@@ -33,7 +33,7 @@ public class HeadGesture : MonoBehaviour
                 player.transform.position = new Vector3(player.transform.position.x + (2 * direction), player.transform.position.y, player.transform.position.z);
                 panel.transform.position = new Vector3(panel.transform.position.x + (2 * direction), panel.transform.position.y, panel.transform.position.z);
 
-                coolDown = 2.5f;
+                coolDown = 1.5f;
             }
         }
         

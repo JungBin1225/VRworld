@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int maxScore = 0;
     public int life = 3;
+
+    public int avoidNum = 0;
+
     void Awake()
     {
         if (gameManager == null)
