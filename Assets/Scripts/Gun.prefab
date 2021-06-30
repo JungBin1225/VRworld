@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 3101655132438596650}
   - component: {fileID: 3101655132438596645}
   - component: {fileID: 3101655132438596651}
-  - component: {fileID: 3101655132438596644}
+  - component: {fileID: 208167322621044440}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -315,8 +315,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3101655132438596644}
-          m_MethodName: OnLookItemBox
+        - m_Target: {fileID: 208167322621044440}
+          m_MethodName: OnLook
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -332,8 +332,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3101655132438596644}
-          m_MethodName: OnLookItemBox
+        - m_Target: {fileID: 208167322621044440}
+          m_MethodName: OnLook
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -345,7 +345,7 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &3101655132438596644
+--- !u!114 &208167322621044440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -354,14 +354,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3101655131266211421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac449a0efb8ce66429580657b8164fb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 376681d8ac3aff946814494e6254ce1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  key: {fileID: 0}
-  num: 4
-  dir: {x: 0, y: 0, z: 0}
-  initTime: 3
 --- !u!1 &3101655131266211423
 GameObject:
   m_ObjectHideFlags: 0

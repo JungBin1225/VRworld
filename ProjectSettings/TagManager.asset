@@ -8,6 +8,11 @@ TagManager:
   - Fire
   - NPC
   - Enemy
+  - pickuppoint
+  - sittingpoint
+  - waypoint
+  - stealingpoint
+  - bullet
   layers:
   - Default
   - TransparentFX

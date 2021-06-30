@@ -62,18 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ArcTeleporter\Scripts\BezierLocomotion\BezierRaycaster.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\BezierLocomotion\BezierVisualizer.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\Menu\GearVRPointer.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\Menu\LoadScene.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\Menu\NoController.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\ParabolicLocomotion\ParabolicRaycaster.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\ParabolicLocomotion\ParabolicVisualizer.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\SharedCode\ArcRaycaster.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\SharedCode\ArcTeleporter.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\SharedCode\ArcVisualizer.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\TallLocomotion\TallRaycaster.cs" />
-    <Compile Include="Assets\ArcTeleporter\Scripts\TallLocomotion\TallVisualizer.cs" />
     <Compile Include="Assets\GoogleVR\Beta\Demos\Scripts\DemoObjectController6DoF.cs" />
     <Compile Include="Assets\GoogleVR\Beta\Demos\Scripts\DemoSeeThroughController.cs" />
     <Compile Include="Assets\GoogleVR\Beta\Scripts\GvrBetaControllerInput.cs" />
@@ -246,6 +234,8 @@
     <Compile Include="Assets\Scripts\CutObject.cs" />
     <Compile Include="Assets\Scripts\Dashboard.cs" />
     <Compile Include="Assets\Scripts\DestroySelf.cs" />
+    <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\EnemyGenerator.cs" />
     <Compile Include="Assets\Scripts\ExitCollider.cs" />
     <Compile Include="Assets\Scripts\ExitTarget.cs" />
     <Compile Include="Assets\Scripts\Explosion.cs" />
@@ -253,7 +243,9 @@
     <Compile Include="Assets\Scripts\FadeOut.cs" />
     <Compile Include="Assets\Scripts\FindMusic.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GetGun.cs" />
     <Compile Include="Assets\Scripts\Goal.cs" />
+    <Compile Include="Assets\Scripts\GunStageManager.cs" />
     <Compile Include="Assets\Scripts\HeadGesture.cs" />
     <Compile Include="Assets\Scripts\LifeUI.cs" />
     <Compile Include="Assets\Scripts\LookItem.cs" />
@@ -281,6 +273,8 @@
     <Compile Include="Assets\Scripts\TargetController.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\VrOnOff.cs" />
+    <Compile Include="Assets\simple modular human\scripts\clothing.cs" />
+    <Compile Include="Assets\simple modular human\scripts\Test_script.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\ShotBehavior.cs" />
@@ -327,6 +321,7 @@
     <None Include="Assets\GoogleVR\Shaders\GvrReticleShader.shader" />
     <None Include="Assets\ResonanceAudio\Demos\Environment\ResonanceAudioDemo\CubeRoomUnlitGrayscale.shader" />
     <None Include="Assets\Images\Skybox\Shaders\Skybox Cubemap Extended.shader" />
+    <None Include="Assets\simple modular human\readMe.txt" />
     <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAdditive.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrUIOverlay.shader" />
     <None Include="Assets\GoogleVR\Plugins\Android\proguard-gvr.txt" />

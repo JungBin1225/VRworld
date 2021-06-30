@@ -121,6 +121,57 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &41840668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 41840670}
+  - component: {fileID: 41840669}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &41840669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41840668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072f6a66f5f84eb408dc60f534c2dbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
+  distance: 00000000000000000000
+  stop: 00000000000000000000
+  gameOver: 0
+  score: 0
+  maxScore: 0
+  life: 3
+  avoidNum: 0
+--- !u!4 &41840670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41840668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0805664, y: 1.1640625, z: 2.6611328}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &207008855 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 6ca25fa760b50c442985738792d7c517,
@@ -859,6 +910,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2068291097053966611, guid: 76c819c997f6dd341bfe542705abcdf8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2068291096970801112, guid: 76c819c997f6dd341bfe542705abcdf8,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -893,11 +949,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068291097053966611, guid: 76c819c997f6dd341bfe542705abcdf8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5628298483953898841, guid: 76c819c997f6dd341bfe542705abcdf8,
         type: 3}
@@ -995,8 +1046,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeUi: {fileID: 0}
   fade: {fileID: 0}
+  message: {fileID: 0}
   moveTo: DayDreamDemo
   fade_out: 0
+  fade_in: 0
 --- !u!114 &1573460857
 MonoBehaviour:
   m_ObjectHideFlags: 0

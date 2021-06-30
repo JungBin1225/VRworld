@@ -2445,7 +2445,7 @@ MonoBehaviour:
   targetPos: []
   spikePrefeb:
   - {fileID: 3428112785679679009, guid: 5a2bad4953347c0419b47bc657adafc8, type: 3}
-  - {fileID: 3428112785679679009, guid: c8f0203267840fb45959acbb454820aa, type: 3}
+  - {fileID: 1725699401396021059, guid: dbb34cdd6624ead478ece302db5bdfc2, type: 3}
   time: 3
 --- !u!4 &1922858886
 Transform:
