@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GetGun : MonoBehaviour
 {
+    public string name;
+
     private bool isLooking = false;
     private GunStageManager manager;
 
@@ -18,9 +20,15 @@ public class GetGun : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
+                manager.gun_name = name;
                 manager.start = true;
-                Destroy(this.gameObject);
+                
             }
+        }
+
+        if(manager.start)
+        {
+            Destroy(this.gameObject);
         }
     }
 

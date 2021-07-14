@@ -5,25 +5,36 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public string type;
-    public int life;
+    public float life;
+    public AudioClip deathAudio;
 
+    private Animator animator;
     private float lifeTime;
+    private float deathAnimTime;
+    private AudioSource audioSource;
+    private bool soundPlaying;
+    private Vector3 target;
+    private float degree;
     void Start()
     {
         switch (type)
         {
             case "enemy":
                 life = 5;
-                Debug.Log("5");
                 break;
 
             case "human":
                 life = 1;
-                Debug.Log("1");
                 break;
         }
 
         lifeTime = 10;
+        deathAnimTime = 2.5f;
+
+        animator = GetComponent<Animator>();
+        audioSource = GetComponentInChildren<AudioSource>();
+        soundPlaying = false;
+        target = randomPos();
     }
 
     
@@ -36,20 +47,58 @@ public class EnemyController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if(life == 0)
+        if(life <= 0)
         {
-            Destroy(this.gameObject);
+            animator.SetBool("death", true);
 
-            switch (type)
+            if(!soundPlaying)
             {
-                case "enemy":
-                    GameManager.gameManager.score++;
-                    break;
+                audioSource.clip = deathAudio;
+                audioSource.volume = 1.0f;
+                audioSource.Play();
 
-                case "human":
-                    GameManager.gameManager.score--;
-                    break;
+                soundPlaying = true;
             }
+
+            lifeTime = 10;
+            deathAnimTime -= Time.deltaTime;
+
+            if(deathAnimTime < 0)
+            {
+                switch (type)
+                {
+                    case "enemy":
+                        GameManager.gameManager.score++;
+                        break;
+
+                    case "human":
+                        GameManager.gameManager.score--;
+                        break;
+                }
+
+                Destroy(this.gameObject);
+            }
+        }
+
+        transform.position += new Vector3((target.x - transform.position.x) * 0.001f, 0, (target.z - transform.position.z) * 0.001f);
+        Vector3 dir = target - transform.position;
+        degree = dir.magnitude;
+
+        switch (type)
+        {
+            case "enemy":
+                transform.LookAt(target);
+                break;
+
+            case "human":
+                transform.LookAt(target);
+                transform.rotation = Quaternion.Euler(0, transform.rotation.y - 90, 0);
+                break;
+        }
+
+        if(degree < 0.5f)
+        {
+            target = randomPos();
         }
     }
 
@@ -57,7 +106,27 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.collider.tag.Equals("bullet"))
         {
-            life--;
+            if(life > 0)
+            {
+                life -= collision.collider.GetComponent<Shooting>().damage;
+                Debug.Log(life);
+                animator.SetTrigger("damaged");
+            }
+            
         }
+    }
+
+    private Vector3 randomPos()
+    {
+        Vector3 pos;
+        float posX;
+        float posZ;
+
+        posX = Random.Range(transform.position.x - 5, transform.position.x + 5);
+        posZ = Random.Range(transform.position.z - 5, transform.position.z + 5);
+
+        pos = new Vector3(posX, 0, posZ);
+
+        return pos;
     }
 }

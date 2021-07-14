@@ -7,13 +7,19 @@ using UnityEngine.SceneManagement;
 public class GunStageManager : MonoBehaviour
 {
     public bool start = false;
-    private GameObject gun;
+    public string gun_name;
+
+    private GameObject gun_m47;
+    private GameObject gun_ak47;
+    private GameObject gun_bitgun;
     private float time;
     private Text timeText;
 
     void Start()
     {
-        gun = GameObject.Find("Gun");
+        gun_m47 = GameObject.Find("Gun_m47");
+        gun_ak47 = GameObject.Find("Gun_ak47");
+        gun_bitgun = GameObject.Find("Gun_bitgun");
         time = 60;
         timeText = GameObject.Find("Time").GetComponent<Text>();
     }
@@ -24,11 +30,27 @@ public class GunStageManager : MonoBehaviour
         {
             if (!start)
             {
-                gun.SetActive(false);
+                gun_m47.SetActive(false);
+                gun_ak47.SetActive(false);
+                gun_bitgun.SetActive(false);
             }
             else
             {
-                gun.SetActive(true);
+                switch (gun_name)
+                {
+                    case "ak47":
+                        gun_ak47.SetActive(true);
+                        break;
+
+                    case "m47":
+                        gun_m47.SetActive(true);
+                        break;
+
+                    case "bitgun":
+                        gun_bitgun.SetActive(true);
+                        break;
+                }
+                
                 time -= Time.deltaTime;
                 timeText.text = "0:" + time.ToString("F2");
                 if (time < 0)
@@ -61,11 +83,6 @@ public class GunStageManager : MonoBehaviour
 
     public void mainmenu()
     {
-        GameManager.gameManager.gameOver = false;
-        GameManager.gameManager.maxScore = 0;
-        GvrCardboardHelpers.Recenter();
-        GameObject cam = GameObject.Find("RawImage");
-        cam.GetComponent<MoblieCam>().activeCameraTexture.Stop();
-        SceneManager.LoadScene("MainMenu");
+        Application.Quit();
     }
 }

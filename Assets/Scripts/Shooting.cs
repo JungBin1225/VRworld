@@ -5,10 +5,12 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     private float time = 5;
+    public float damage;
+    public int speed;
 
     void Start()
     {
-        GetComponent<Rigidbody>().AddForce(Camera.main.transform.rotation * Vector3.forward * 500);
+        GetComponent<Rigidbody>().AddForce(Camera.main.transform.rotation * Vector3.forward * speed);
     }
 
     void Update()
