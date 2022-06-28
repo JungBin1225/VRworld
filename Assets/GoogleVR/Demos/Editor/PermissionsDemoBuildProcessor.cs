@@ -67,8 +67,8 @@ namespace GoogleVR.Demos
         {
             cardboardAddedFromCode = false;
 
-            string[] androidVrSDKs =
-                VREditor.GetVREnabledDevicesOnTargetGroup(BuildTargetGroup.Android);
+            /*string[] androidVrSDKs =
+                VREditor.GetVREnabledDevicesOnTargetGroup(BuildTargetGroup.Android);*/
 
             EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
 
@@ -95,36 +95,36 @@ namespace GoogleVR.Demos
                 }
             }
 
-            bool hasCardboard = Array.Exists<string>(androidVrSDKs,
-                element => element.Equals(GvrSettings.VR_SDK_CARDBOARD));
+            /*bool hasCardboard = Array.Exists<string>(androidVrSDKs,
+                element => element.Equals(GvrSettings.VR_SDK_CARDBOARD));*/
 
-            if (hasCardboard)
+            /*if (hasCardboard)
             {
                 return;
-            }
+            }*/
 
-            bool hasDaydream = Array.Exists<string>(androidVrSDKs,
-                element => element.Equals(GvrSettings.VR_SDK_DAYDREAM));
+            /*bool hasDaydream = Array.Exists<string>(androidVrSDKs,
+                element => element.Equals(GvrSettings.VR_SDK_DAYDREAM));*/
 
-            if (!hasDaydream)
+            /*if (!hasDaydream)
             {
                 return;
-            }
+            }*/
 
-            string[] androidVrSDKsAppended = new string[androidVrSDKs.Length + 1];
+            //string[] androidVrSDKsAppended = new string[androidVrSDKs.Length + 1];
 
-            for (int i = 0; i < androidVrSDKs.Length; i++)
+           /* for (int i = 0; i < androidVrSDKs.Length; i++)
             {
                 androidVrSDKsAppended[i] = androidVrSDKs[i];
-            }
+            }*/
 
-            androidVrSDKsAppended[androidVrSDKsAppended.Length - 1] = GvrSettings.VR_SDK_CARDBOARD;
+            //androidVrSDKsAppended[androidVrSDKsAppended.Length - 1] = GvrSettings.VR_SDK_CARDBOARD;
 
-            VREditor.SetVREnabledOnTargetGroup(
+            /*VREditor.SetVREnabledOnTargetGroup(
                 BuildTargetGroup.Android, true);
             VREditor.SetVREnabledDevicesOnTargetGroup(
                 BuildTargetGroup.Android,
-                androidVrSDKsAppended);
+                androidVrSDKsAppended);*/
 
             cardboardAddedFromCode = true;
         }
@@ -156,29 +156,29 @@ namespace GoogleVR.Demos
                 return;
             }
 
-            string[] androidVrSDKs =
-                VREditor.GetVREnabledDevicesOnTargetGroup(BuildTargetGroup.Android);
+            /*string[] androidVrSDKs =
+                VREditor.GetVREnabledDevicesOnTargetGroup(BuildTargetGroup.Android);*/
 
             // The enabled devices are modified somehow, which shouldn't happen. Abort the
             // post-build process.
-            if (androidVrSDKs.Length == 0 ||
+            /*if (androidVrSDKs.Length == 0 ||
                 androidVrSDKs[androidVrSDKs.Length - 1] != GvrSettings.VR_SDK_CARDBOARD)
             {
                 return;
-            }
+            }*/
 
-            string[] androidVrSDKsShortened = new string[androidVrSDKs.Length - 1];
+            //string[] androidVrSDKsShortened = new string[androidVrSDKs.Length - 1];
 
-            for (int i = 0; i < androidVrSDKsShortened.Length; i++)
+            /*for (int i = 0; i < androidVrSDKsShortened.Length; i++)
             {
                 androidVrSDKsShortened[i] = androidVrSDKs[i];
-            }
+            }*/
 
             VREditor.SetVREnabledOnTargetGroup(
                 BuildTargetGroup.Android, true);
-            VREditor.SetVREnabledDevicesOnTargetGroup(
+           /* VREditor.SetVREnabledDevicesOnTargetGroup(
                 BuildTargetGroup.Android,
-                androidVrSDKsShortened);
+                androidVrSDKsShortened);*/
 
             cardboardAddedFromCode = false;
         }

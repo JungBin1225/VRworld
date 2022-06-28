@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
     public int maxScore = 0;
-    public int life = 3;
+    public int life = 100;
 
     public int avoidNum = 0;
 
@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
         if(score > maxScore)
         {
             maxScore = score;
+        }
+
+        if(life < 0)
+        {
+            life = 0;
         }
     }
 

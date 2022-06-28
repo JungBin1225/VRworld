@@ -46,7 +46,7 @@ namespace Gvr.Internal
         {
             get
             {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
                 UnityEditor.XR.Daydream.SupportedHeadTracking minTrackingState
                         = UnityEditor.PlayerSettings.VRDaydream.minimumSupportedHeadTracking;
                 UnityEditor.XR.Daydream.SupportedHeadTracking maxTrackingState
@@ -90,7 +90,8 @@ namespace Gvr.Internal
                 }
 #else // UNITY_EDITOR
                 return false;
-#endif // UNITY_EDITOR
+#endif // UNITY_EDITOR*/
+                return false;
             }
         }
 

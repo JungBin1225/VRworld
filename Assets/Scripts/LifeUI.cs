@@ -5,27 +5,18 @@ using UnityEngine.UI;
 
 public class LifeUI : MonoBehaviour
 {
-    public List<GameObject> lifeImage;
+    public GameObject lifeImage;
+    public Text lifeText;
     void Start()
     {
-        lifeImage.Add(GameObject.Find("Life_1"));
-        lifeImage.Add(GameObject.Find("Life_2"));
-        lifeImage.Add(GameObject.Find("Life_3"));
+        lifeImage = GameObject.Find("Life");
+        lifeText = GameObject.Find("LifeText").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < 3; i++)
-        {
-            if(i <= GameManager.gameManager.life - 1)
-            {
-                lifeImage[i].SetActive(true);
-            }
-            else
-            {
-                lifeImage[i].SetActive(false);
-            }
-        }
+        lifeImage.GetComponent<Image>().fillAmount = GameManager.gameManager.life / 100f;
+        lifeText.text = GameManager.gameManager.life + " / 100";
     }
 }
