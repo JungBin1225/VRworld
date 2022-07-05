@@ -6,14 +6,9 @@ public class Explosion : MonoBehaviour
 {
     void Update()
     {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Enemy")
+        if(Input.GetMouseButtonDown(0))
         {
-            other.GetComponent<EnemyController>().life = 0;
+            GetComponent<ParticleSystem>().Play();
         }
     }
 }

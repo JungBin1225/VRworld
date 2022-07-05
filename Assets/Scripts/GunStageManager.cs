@@ -53,7 +53,7 @@ public class GunStageManager : MonoBehaviour
                 
                 time -= Time.deltaTime;
                 timeText.text = "0:" + time.ToString("F2");
-                if (time < 0 || GameManager.gameManager.life == 0)
+                if (time < 0)
                 {
                     time = 0;
                     gameOver();
@@ -75,7 +75,6 @@ public class GunStageManager : MonoBehaviour
     public void restart()
     {
         GameManager.gameManager.gameOver = false;
-        GameManager.gameManager.life = 100;
         GvrCardboardHelpers.Recenter();
         GameObject cam = GameObject.Find("RawImage");
         cam.GetComponent<MoblieCam>().activeCameraTexture.Stop();

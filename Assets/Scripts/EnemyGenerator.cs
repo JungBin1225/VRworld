@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    public List<GameObject> enemyPrefeb;
-    public List<int> quadrant;
+    public GameObject enemyPrefeb;
+    public GameObject humanPrefeb;
 
     private GunStageManager stageManager;
     private GameObject player;
     private float spawnTime;
     private int num;
-    private int summonNum;
     void Start()
     {
         stageManager = GameObject.Find("StageManager").GetComponent<GunStageManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         spawnTime = 2.0f;
-        summonNum = 0;
-
-        initList();
     }
 
     // Update is called once per frame
@@ -31,32 +27,22 @@ public class EnemyGenerator : MonoBehaviour
 
             if (spawnTime < 0)
             {
-                num = Random.Range(0, enemyPrefeb.Count);
+                num = Random.Range(0, 5);
 
-                GameObject enemy = Instantiate(enemyPrefeb[num]) as GameObject;
-                
-                switch(randomQuadrant())
+                if (num == 0)
                 {
-                    case 1:
-                        enemy.transform.position = randomPos(player.transform.position.x, player.transform.position.x + 15, player.transform.position.z, player.transform.position.z + 15);
-                        break;
-
-                    case 2:
-                        enemy.transform.position = randomPos(player.transform.position.x - 15, player.transform.position.x, player.transform.position.z, player.transform.position.z + 15);
-                        break;
-
-                    case 3:
-                        enemy.transform.position = randomPos(player.transform.position.x - 15, player.transform.position.x, player.transform.position.z - 15, player.transform.position.z);
-                        break;
-
-                    case 4:
-                        enemy.transform.position = randomPos(player.transform.position.x, player.transform.position.x + 15, player.transform.position.z - 15, player.transform.position.z);
-                        break;
+                    GameObject human = Instantiate(humanPrefeb) as GameObject;
+                    human.transform.position = randomPos();
+                    human.GetComponent<EnemyController>().type = "human";
                 }
-                enemy.GetComponent<EnemyController>().type = enemyPrefeb[num].name;
-                summonNum++;
+                else
+                {
+                    GameObject enemy = Instantiate(enemyPrefeb) as GameObject;
+                    enemy.transform.position = randomPos();
+                    enemy.GetComponent<EnemyController>().type = "enemy";
+                }
 
-                spawnTime = 2.0f - (summonNum * 0.01f);
+                spawnTime = Random.Range(1.5f, 2.5f);
             }
         }
         else
@@ -65,64 +51,27 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
-    private Vector3 randomPos(float minX, float maxX, float minZ, float maxZ)
+    private Vector3 randomPos()
     {
         Vector3 pos;
         float posX;
         float posZ;
 
-        posX = Random.Range(minX, maxX);
-        posZ = Random.Range(minZ, maxZ);
+        posX = Random.Range(player.transform.position.x - 15, player.transform.position.x + 15);
+        posZ = Random.Range(player.transform.position.z - 15, player.transform.position.z + 15);
 
-        if ((posX - player.transform.position.x) < 4 && (posX - player.transform.position.x) > -4 && (posZ - player.transform.position.z) < 4 && (posZ - player.transform.position.z) > -4)
+        if((posX - player.transform.position.x) < 4 && (posX - player.transform.position.x) > -4)
         {
-            if(posX < 0)
-            {
-                posX = Random.Range(minX, player.transform.position.x - 4);
-            }
-            else
-            {
-                posX = Random.Range(player.transform.position.x + 4, maxX);
-            }
+            posX = Random.Range(player.transform.position.x + 4, player.transform.position.x + 15);
+        }
 
-            if (posZ < 0)
-            {
-                posZ = Random.Range(minZ, player.transform.position.z - 4);
-            }
-            else
-            {
-                posZ = Random.Range(player.transform.position.z + 4, maxZ);
-            }
+        if ((posZ - player.transform.position.z) < 4 && (posZ - player.transform.position.z) > -4)
+        {
+            posZ = Random.Range(player.transform.position.z + 4, player.transform.position.z + 15);
         }
 
         pos = new Vector3(posX, 0, posZ);
 
         return pos;
-    }
-
-    private int randomQuadrant()
-    {
-        int result;
-        int num;
-
-        if(quadrant.Count == 0)
-        {
-            initList();
-        }
-
-        num = Random.Range(0, quadrant.Count);
-        result = quadrant[num];
-        quadrant.Remove(result);
-
-        Debug.Log(result);
-        return result;
-    }
-
-    private void initList()
-    {
-        quadrant.Add(1);
-        quadrant.Add(2);
-        quadrant.Add(3);
-        quadrant.Add(4);
     }
 }

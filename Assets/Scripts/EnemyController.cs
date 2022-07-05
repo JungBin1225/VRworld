@@ -7,70 +7,47 @@ public class EnemyController : MonoBehaviour
     public string type;
     public float life;
     public AudioClip deathAudio;
-    public GameObject bombEffect;
 
-    private WeaponDamage damage;
-    private GameObject player;
     private Animator animator;
     private float lifeTime;
     private float deathAnimTime;
-    private float damageAnimTime;
     private AudioSource audioSource;
     private bool soundPlaying;
     private Vector3 target;
     private float degree;
-    private float speed;
-    private bool isAttack;
-
     void Start()
     {
-        life = 5;
-
-        lifeTime = 10;
-        deathAnimTime = 2.5f;
-        damageAnimTime = 1.0f;
-
-        damage = GetComponentInChildren<WeaponDamage>();
         switch (type)
         {
-            case "Enemy":
-                damage.damage = 7;
-                speed = 0.006f;
+            case "enemy":
+                life = 5;
                 break;
-            case "Enemy_1":
-                damage.damage = 20;
-                speed = 0.004f;
-                break;
-            case "Enemy_2":
-                damage.damage = 10;
-                speed = 0.01f;
-                break;
-            case "Enemy_3":
-                damage.damage = 15;
-                speed = 0.004f;
-                break;
-            case "Enemy_4":
-                damage.damage = 13;
-                speed = 0.008f;
-                break;
-            case "Enemy_5":
-                damage.damage = 10;
-                speed = 0.01f;
+
+            case "human":
+                life = 1;
                 break;
         }
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        lifeTime = 10;
+        deathAnimTime = 2.5f;
+
         animator = GetComponent<Animator>();
         audioSource = GetComponentInChildren<AudioSource>();
         soundPlaying = false;
-        target = player.transform.position;
-        isAttack = false;
+        target = randomPos();
     }
 
     
     void Update()
     {
-        if (life <= 0 || lifeTime < 0)
+        lifeTime -= Time.deltaTime;
+
+        if(lifeTime < 0)
+        {
+            Destroy(this.gameObject);
+        }
+
+        if(life <= 0)
         {
             animator.SetBool("death", true);
 
@@ -83,60 +60,45 @@ public class EnemyController : MonoBehaviour
                 soundPlaying = true;
             }
 
+            lifeTime = 10;
             deathAnimTime -= Time.deltaTime;
 
             if(deathAnimTime < 0)
             {
-                if(life <= 0)
-                {
-                    GameManager.gameManager.score++;
-                }
-
                 switch (type)
                 {
-                    case "Enemy_1":
-                        GameObject bomb = Instantiate(bombEffect) as GameObject;
-                        bomb.transform.position = this.transform.position;
+                    case "enemy":
+                        GameManager.gameManager.score++;
+                        break;
+
+                    case "human":
+                        GameManager.gameManager.score--;
                         break;
                 }
 
                 Destroy(this.gameObject);
             }
         }
-        
+
+        transform.position += new Vector3((target.x - transform.position.x) * 0.001f, 0, (target.z - transform.position.z) * 0.001f);
         Vector3 dir = target - transform.position;
         degree = dir.magnitude;
-        transform.LookAt(target);
 
-        if (degree < 2.7f)
+        switch (type)
         {
-            lifeTime -= Time.deltaTime;
+            case "enemy":
+                transform.LookAt(target);
+                break;
+
+            case "human":
+                transform.LookAt(target);
+                transform.rotation = Quaternion.Euler(0, transform.rotation.y - 90, 0);
+                break;
         }
 
-        if (damageAnimTime < 0)
+        if(degree < 0.5f)
         {
-            if (degree < 2.7f)
-            {
-                animator.SetBool("attack", true);
-
-                if(isAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-                {
-                    damage.damaged = false;
-                }
-                isAttack = animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
-
-            }
-            else
-            {
-                if(deathAnimTime == 2.5f)
-                {
-                    transform.position += new Vector3((target.x - transform.position.x) * speed, 0, (target.z - transform.position.z) * speed);
-                }
-            }
-        }
-        else
-        {
-            damageAnimTime -= Time.deltaTime;
+            target = randomPos();
         }
     }
 
@@ -147,24 +109,24 @@ public class EnemyController : MonoBehaviour
             if(life > 0)
             {
                 life -= collision.collider.GetComponent<Shooting>().damage;
+                Debug.Log(life);
                 animator.SetTrigger("damaged");
-                damageAnimTime = 1;
             }
             
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private Vector3 randomPos()
     {
-        if (other.tag.Equals("bullet"))
-        {
-            if (life > 0)
-            {
-                life -= other.GetComponent<Shooting>().damage;
-                animator.SetTrigger("damaged");
-                damageAnimTime = 1;
-            }
+        Vector3 pos;
+        float posX;
+        float posZ;
 
-        }
+        posX = Random.Range(transform.position.x - 5, transform.position.x + 5);
+        posZ = Random.Range(transform.position.z - 5, transform.position.z + 5);
+
+        pos = new Vector3(posX, 0, posZ);
+
+        return pos;
     }
 }

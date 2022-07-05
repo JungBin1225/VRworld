@@ -13,7 +13,6 @@ TagManager:
   - waypoint
   - stealingpoint
   - bullet
-  - weapon
   layers:
   - Default
   - TransparentFX

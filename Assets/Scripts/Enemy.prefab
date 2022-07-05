@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6430845941868153802}
   m_Layer: 0
   m_Name: Object01
-  m_TagString: weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 8372319004783033728}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,9 +195,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &8372319004783033728
 MonoBehaviour:
@@ -214,7 +214,6 @@ MonoBehaviour:
   type: 
   life: 0
   deathAudio: {fileID: 8300000, guid: b7e3eccbf9a8ad04280f49a1fb3b95eb, type: 3}
-  bombEffect: {fileID: 0}
 --- !u!1 &6430845941871330950
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,12 +652,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6430845941871762124}
-  - component: {fileID: 4239411835409772872}
-  - component: {fileID: 668629734551837411}
-  - component: {fileID: 2868629348237291317}
   m_Layer: 0
   m_Name: Bip001 Prop1
-  m_TagString: weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -677,49 +673,6 @@ Transform:
   m_Father: {fileID: 6430845941871762154}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4239411835409772872
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6430845941871330988}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.023, y: 0.01, z: 0.115}
-  m_Center: {x: 0.003, y: 0, z: 0.04}
---- !u!114 &668629734551837411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6430845941871330988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eab4743088c39bd41833638761551c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
-  damaged: 0
---- !u!54 &2868629348237291317
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6430845941871330988}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &6430845941871330990
 GameObject:
   m_ObjectHideFlags: 0
