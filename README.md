@@ -25,3 +25,4 @@
     + #### [유튜브 링크_1](https://youtu.be/uRjAOVGLkRk)
     + #### [유튜브 링크_2](https://youtu.be/2wZW2FfmWnI)
     + #### [![Video Label](https://user-images.githubusercontent.com/69952837/178147187-5a89ec72-8077-46b8-9d86-46c3c2668259.PNG)](https://youtu.be/uRjAOVGLkRk)
+    + #### [![Video Label](https://user-images.githubusercontent.com/69952837/178147254-f647f403-4474-444e-948b-0a8b1d20670b.PNG)](https://youtu.be/2wZW2FfmWnI)
